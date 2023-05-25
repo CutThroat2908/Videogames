@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/MenuPrincipalFragmento">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.videogames.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/MenuPrincipalFragmento"
+        android:name="com.example.videogames.MenuPrincipalFragmento"
+        android:label="@string/menu_principal_label"
+        tools:layout="@layout/fragmento_menuprincipal">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SobreFragmento" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.videogames.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/SobreFragmento"
+        android:name="com.example.videogames.SobreFragmento"
+        android:label="@string/sobre_fragmento_label"
+        tools:layout="@layout/fragmento_sobre">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/MenuPrincipalFragmento" />
     </fragment>
 </navigation>
