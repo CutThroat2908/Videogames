@@ -25,4 +25,13 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/MenuPrincipalFragmento" />
     </fragment>
+    <fragment
+        android:id="@+id/ListaInstrumentosFragmento"
+        android:name="com.example.videogames.ListaJogosFragmento"
+        android:label="@string/lista_jogos_fragmento_label"
+        tools:layout="@layout/fragmento_listajogos_fragmento">
+        <action
+            android:id="@+id/action_ListaJogosFragmento_to_MenuPrincipalFragmento"
+            app:destination="@id/MenuPrincipalFragmento" />
+    </fragment>
 </navigation>

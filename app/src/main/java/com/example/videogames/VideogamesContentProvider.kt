@@ -56,10 +56,10 @@ class VideogamesContentProvider : ContentProvider() {
 
         return when(endereco){
 
-            URI_JOGOS-> "vdn.android.cursor.dir/$JOGOS"
-            URI_JOGADORES -> "vdn.android.cursor.dir/$JOGADORES"
-            URI_JOGO_ID -> "vdn.android.cursor.item/$JOGOS"
-            URI_JOGADOR_ID -> "vdn.android.cursor.item/$JOGADORES"
+            URI_JOGOS-> "vnd.android.cursor.dir/$JOGOS"
+            URI_JOGADORES -> "vnd.android.cursor.dir/$JOGADORES"
+            URI_JOGO_ID -> "vnd.android.cursor.item/$JOGOS"
+            URI_JOGADOR_ID -> "vnd.android.cursor.item/$JOGADORES"
             else -> null
 
         }
@@ -139,6 +139,10 @@ class VideogamesContentProvider : ContentProvider() {
         private const val URI_JOGADOR_ID =101
         private const val URI_JOGADORES=100
         private const val URI_JOGOS =201
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+        val ENDERECO_JOGADORES  = Uri.withAppendedPath(ENDERECO_BASE, JOGADORES)
+        val ENDERECO_JOGOS  = Uri.withAppendedPath(ENDERECO_BASE, JOGOS)
 
         fun uriMatcher()=UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, JOGADORES, URI_JOGADORES)
