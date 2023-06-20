@@ -15,4 +15,7 @@
     <string name="jogadores">JOGADORES</string>
     <string name="pesquisar">PESQUISAR</string>
     <string name="sobre">SOBRE</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

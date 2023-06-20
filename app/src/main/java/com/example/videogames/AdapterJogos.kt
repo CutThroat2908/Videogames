@@ -40,6 +40,7 @@ class AdapterJogos(val fragmento: ListaJogosFragmento) : RecyclerView.Adapter<Ad
 
         fun seleciona(){
             viewHolderSelecionado=this
+            fragmento.jogoSelecionado = jogo
             itemView.setBackgroundResource(R.color.teal_200)
         }
 
