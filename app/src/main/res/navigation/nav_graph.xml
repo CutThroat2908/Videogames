@@ -26,12 +26,31 @@
             app:destination="@id/MenuPrincipalFragmento" />
     </fragment>
     <fragment
-        android:id="@+id/ListaInstrumentosFragmento"
+        android:id="@+id/action_ListaJogosFragmento_to_MenuPrincipalFragmento"
         android:name="com.example.videogames.ListaJogosFragmento"
         android:label="@string/lista_jogos_fragmento_label"
         tools:layout="@layout/fragmento_listajogos_fragmento">
         <action
             android:id="@+id/action_ListaJogosFragmento_to_MenuPrincipalFragmento"
             app:destination="@id/MenuPrincipalFragmento" />
+        <action
+            android:id="@+id/action_ListaLivrosFragment_to_editarLivroFragment"
+            app:destination="@id/editarJogoFragmento" />
+        <action
+            android:id="@+id/action_ListaLivrosFragment_to_eliminarLivroFragment"
+            app:destination="@id/eliminarJogoFragmento" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarLivroFragment"
+        android:name="com.example.videogames.EditarJogoFragmento"
+        android:label="@string/novo_jogo_label"
+        tools:layout="@layout/fragmento_editar_jogo">
+        <action
+            android:id="@+id/action_editarJogoFragmento_to_ListaJogosFragmento"
+            app:destination="@id/action_ListaJogosFragmento_to_MenuPrincipalFragmento" />
+        <argument
+            android:name="jogo"
+            app:argType="com.example.videogames.Jogo"
+            app:nullable="true" />
     </fragment>
 </navigation>

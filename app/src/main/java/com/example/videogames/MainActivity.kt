@@ -1,7 +1,7 @@
 package com.example.videogames
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +13,7 @@ import com.example.videogames.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var menu: Menu
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
         }
+
+    var fragment : Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+        this.menu = menu
         return true
     }
 
@@ -52,10 +56,18 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+
+        if (item.itemId == R.id.action_settings) {
+            return true
         }
+        val opcaoProcessada = when (fragment) {
+            is ListaJogosFragmento -> (fragment as ListaJogosFragmento).processaOpcaoMenu(item)
+            is EditarJogoFragmento -> (fragment as EditarJogoFragmento).processaOpcaoMenu(item)
+            is EliminarJogoFragmento -> (fragment as EliminarJogoFragmento).processaOpcaoMenu(item)
+            else -> false
+        }
+
+        return if (opcaoProcessada) { true } else { super.onOptionsItemSelected(item) }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -63,4 +75,8 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+    fun mostraOpcaoMenu(idOpcao: Int, mostrar: Boolean) {
+        menu.findItem(idOpcao).setVisible(mostrar)
+    }
+    fun atualizaNome(label: Int) = binding.toolbar.setTitle(label)
 }

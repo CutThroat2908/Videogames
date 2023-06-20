@@ -8,13 +8,15 @@ import android.support.v4.content.CursorLoader
 import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.videogames.databinding.FragmentoListajogosFragmentoBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ListaInstrumentosFragmento.newInstance] factory method to
+ * Use the [ListaJogosFragmento.newInstance] factory method to
  * create an instance of this fragment.
  */
 class ListaJogosFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -23,6 +25,15 @@ class ListaJogosFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private val binding get() = _binding!!
 
     var jogoSelecionado : Jogo? = null
+        set(value) {
+            field = value
+
+            val mostrarEliminarAlterar = (value != null)
+
+            val activity = activity as MainActivity
+            activity.mostraOpcaoMenu(R.id.action_editar, mostrarEliminarAlterar)
+            activity.mostraOpcaoMenu(R.id.action_eliminar, mostrarEliminarAlterar)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +45,7 @@ class ListaJogosFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentoListajogosFragmentoBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,6 +66,7 @@ class ListaJogosFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         loader.initLoader(ID_LOADER_JOGOS,null,this)
 
         val activity = activity as MainActivity
+        activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista_jogos
     }
 
@@ -85,8 +97,42 @@ class ListaJogosFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterJogos!!.cursor=null
+        if (adapterJogos != null) {
+            adapterJogos!!.cursor = null
+        }
     }
 
+    fun processaOpcaoMenu(item: MenuItem) : Boolean {
+        return when (item.itemId) {
+            R.id.action_adicionar -> {
+                adicionaJogo()
+                true
+            }
+            R.id.action_editar -> {
+                editarJogo()
+                true
+            }
+            R.id.action_eliminar -> {
+                eliminarJogo()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun eliminarJogo() {
+        val acao = ListaJogosFragmentoDirections.actionListaJogosFragmentoToEliminarJogoFragmento(jogoSelecionado!!)
+        findNavController().navigate(acao)
+    }
+
+    private fun editarJogo() {
+        val acao = ListaJogosFragmentoDirections.actionListaJogosFragmentoToEditarJgoFragmento(jogoSelecionado!!)
+        findNavController().navigate(acao)
+    }
+
+    private fun adicionaJogo() {
+        val acao = ListaJogosFragmentoDirections.actionListaJogosFragmentToEditarJogoFragmento(null)
+        findNavController().navigate(acao)
+    }
 
 }

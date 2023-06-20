@@ -3,15 +3,16 @@ package com.example.videogames
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Jogo(
     var nome:String,
     var genero:String,
-    var desenvolvedora:String,
+    var desenvolvedora: String?,
     var plataforma:String,
     var preco:Int,
     var idJogadores:Long,
-    var id:Long = -1) {
+    var id:Long = -1) : Serializable{
 
     fun toContentValues(): ContentValues {
         val valores = ContentValues()

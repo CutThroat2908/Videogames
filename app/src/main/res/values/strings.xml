@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="menu_principal_label">Menu Principal</string>
-    <string name="sobre_fragmento_label">Sobre</string>
+    <string name="sobre_fragment_label">Sobre …</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="lista_jogos_fragmento_label">Lista de Instrumentos</string>
@@ -18,4 +18,19 @@
     <string name="adicionar">Adicionar</string>
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="novo_jogo_label">Novo jogo</string>
+    <string name="nome">Nome</string>
+    <string name="jogador">Jogador</string>
+    <string name="genero">Genero</string>
+    <string name="editar_livro_label">Editar livro</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nome_obrigatorio">Deve preencher o nome</string>
+    <string name="genero_obrigatorio">Deve preencher o genero</string>
+    <string name="jogo_guardado_com_sucesso">Jogo guardado com sucesso</string>
+    <string name="erro_guardar_jogo">Não foi possível guardar o jogo</string>
+    <string name="eliminar_jogo_label">Eliminar jogo</string>
+    <string name="isbn">ISBN</string>
+    <string name="jogo_eliminado_com_sucesso">Jogo eliminado com sucesso</string>
+    <string name="erro_eliminar_jogo">Erro ao eliminar jogo</string>
 </resources>
