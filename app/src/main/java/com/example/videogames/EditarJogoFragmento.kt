@@ -15,6 +15,10 @@ import android.widget.SimpleCursorAdapter
 import android.widget.Toast
 import com.example.videogames.databinding.FragmentoEditarJogoBinding
 import android.net.Uri
+import androidx.fragment.app.Fragment
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
 import java.util.*
 
 private const val ID_LOADER_JOGADORES = 0
@@ -56,11 +60,11 @@ class EditarJogoFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val jogo = EditarJogoFragmento.fromBundle(requireArguments()).livro
 
         if (jogo != null) {
-            activity.atualizaNome(R.string.editar_nome_label)
+            activity.atualizaNome(R.string.editar_jogo_label)
             binding.editTextNome.setText(jogo.titulo)
             binding.editTextIsbn.setText(jogo.isbn)
         } else {
-            activity.atualizaNome(R.string.novo_nome_label)
+            activity.atualizaNome(R.string.novo_jogo_label)
         }
         this.jogo = jogo
     }
@@ -111,10 +115,9 @@ class EditarJogoFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 nome,
                 jogador("?", jogadorId),
                 isbn,
-                genero
-            )
+                genero)
 
-            insereLivro(jogo)
+            insereJogo(jogo)
         } else {
             val jogo = jogo!!
             jogo.nome = nome
@@ -195,7 +198,7 @@ class EditarJogoFragmento : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private fun mostraCategoriaSelecionadaSpinner() {
         if (jogo == null) return
 
-        val idJogador = jogo!!.jogador.id
+        val idJogador = jogo!!.idJogadores
 
         val ultimoJogador = binding.spinnerJogadores.count - 1
         for (i in 0..ultimoJogador) {

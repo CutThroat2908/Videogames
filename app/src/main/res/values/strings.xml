@@ -22,7 +22,7 @@
     <string name="nome">Nome</string>
     <string name="jogador">Jogador</string>
     <string name="genero">Genero</string>
-    <string name="editar_livro_label">Editar livro</string>
+    <string name="editar_jogo_label">Editar jogo</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="nome_obrigatorio">Deve preencher o nome</string>
